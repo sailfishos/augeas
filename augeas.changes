@@ -1,0 +1,15 @@
+* Thu May 26 2011 Junfeng Dong <junfeng.dong@intel.com> - 0.8.1
+- Update to latest version 0.8.1 to work with gcc 4.6 
+  (failure caused by -Wunused-but-set-variable).
+
+* Sat Sep 04 2010 Anas Nashif <nashif@linux.intel.com> - 0.7.2
+- Fixed dependencies: libs should not require augeas
+
+* Mon Jul 12 2010 Yu <yu.a.wang@intel.com> - 0.7.2
+- Update to 0.7.2, use spectacle
+
+* Wed Jan 27 2010 Peter J Zhu <peter.j.zhu@intel.com> - 0.7.0
+- Update to 0.7
+
+* Fri Aug 14 2009 Anas Nashif <anas.nashif@intel.com> - 0.5.2
+- Initial import into Moblin
