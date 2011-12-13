@@ -1,6 +1,6 @@
 Name: augeas
 Summary: A library for changing configuration files
-Version: 0.8.1
+Version: 0.10.0
 Release: 1
 Group: System/Libraries
 License: LGPLv2+
@@ -17,6 +17,8 @@ Description: |
     details. It is controlled by ``lens'' definitions that describe the file
     format and the transformation into a tree.
 
+PkgConfigBR:
+    - libxml-2.0
 PkgBR:
     - readline-devel
 SubPackages:
