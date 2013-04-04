@@ -1,12 +1,12 @@
 Name: augeas
 Summary: A library for changing configuration files
-Version: 0.10.0
+Version: 1.0.0
 Release: 1
 Group: System/Libraries
 License: LGPLv2+
 URL: http://augeas.net/
 Sources:
-    - http://augeas.net/download/%{name}-%{version}.tar.gz
+    - http://download.augeas.net/%{name}-%{version}.tar.gz
 Description: |
     A library for programmatically editing configuration files. Augeas parses
     configuration files into a tree structure, which it exposes through its
