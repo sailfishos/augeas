@@ -1,3 +1,4 @@
 [submodule "upstream"]
 	path = upstream
 	url = https://github.com/hercules-team/augeas.git
+	fetchRecurseSubmodules = on-demand

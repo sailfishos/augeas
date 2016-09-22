@@ -1,0 +1,34 @@
+From ee88aa4f761bf9d8bf32022de810adcb5fbcf5f2 Mon Sep 17 00:00:00 2001
+From: Andrew Branson <andrew.branson@jollamobile.com>
+Date: Thu, 22 Sep 2016 04:05:58 -0400
+Subject: [PATCH] Remove git submodule fetching
+
+tar_git should look after the submodules, and git isn't available on OBS
+
+---
+ bootstrap | 10 +---------
+ 1 file changed, 1 insertion(+), 9 deletions(-)
+
+diff --git a/bootstrap b/bootstrap
+index a84eb39..0aaef3e 100755
+--- a/bootstrap
++++ b/bootstrap
+@@ -45,15 +45,7 @@ case ${GNULIB_SRCDIR--} in
+ *)
+   # Redirect the gnulib submodule to the directory on the command line
+   # if possible.
+-  if test -d "$GNULIB_SRCDIR"/.git && \
+-	git config --file .gitmodules submodule.gnulib.url >/dev/null; then
+-    git submodule init
+-    GNULIB_SRCDIR=`cd $GNULIB_SRCDIR && pwd`
+-    git config --replace-all submodule.gnulib.url $GNULIB_SRCDIR
+-    echo "$0: getting gnulib files..."
+-    git submodule update || exit $?
+-    GNULIB_SRCDIR=.gnulib
+-  else
++  if test ! -d "$GNULIB_SRCDIR"; then
+     echo >&2 "$0: invalid gnulib srcdir: $GNULIB_SRCDIR"
+     exit 1
+   fi
+-- 
+1.8.3-rc3
