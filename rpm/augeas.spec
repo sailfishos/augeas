@@ -22,7 +22,6 @@ The transformation works very hard to preserve comments and formatting
 details. It is controlled by ``lens'' definitions that describe the file
 format and the transformation into a tree.
 
-
 %package libs
 Summary:    Libraries for %{name}
 Group:      System/Libraries
@@ -41,6 +40,14 @@ Requires:   %{name} = %{version}-%{release}
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
+%package doc
+Summary:   Documentation for %{name}
+Group:     Documentation
+Requires:  %{name} = %{version}-%{release}
+
+%description doc
+Man pages for %{name}.
+
 %prep
 %setup -q -n %{name}-%{version}/upstream
 %patch0 -p1
@@ -49,13 +56,16 @@ developing applications that use %{name}.
 
 ./autogen.sh --disable-static --prefix=%{_usr} \
 	--gnulib-srcdir=.gnulib
-make %{?jobs:-j%jobs}
+make %{?_smp_mflags}
 
 %install
 rm -rf %{buildroot}
 %make_install
 
-find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+find %{buildroot} -name '*.la' -exec rm -f {} ';'
+
+mkdir -p %{buildroot}%{_docdir}/%{name}-%{version}
+install -m0644 -t %{buildroot}%{_docdir}/%{name}-%{version} AUTHORS NEWS
 
 %post libs -p /sbin/ldconfig
 
@@ -63,22 +73,26 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
+%license COPYING
 %{_bindir}/augtool
 %{_bindir}/augparse
 %{_bindir}/fadot
-%doc %{_mandir}/man1/*
 %{_datadir}/vim/vimfiles/syntax/augeas.vim
 %{_datadir}/vim/vimfiles/ftdetect/augeas.vim
 
 %files libs
 %defattr(-,root,root,-)
+%license COPYING
 %{_datadir}/augeas
 %{_libdir}/*.so.*
-%doc AUTHORS COPYING NEWS
 
 %files devel
 %defattr(-,root,root,-)
-%doc
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/augeas.pc
+
+%files doc
+%defattr(-,root,root,-)
+%{_mandir}/man1/*
+%{_docdir}/%{name}-%{version}
