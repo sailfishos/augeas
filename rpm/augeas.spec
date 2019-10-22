@@ -76,6 +76,7 @@ install -m0644 -t %{buildroot}%{_docdir}/%{name}-%{version} AUTHORS NEWS
 %license COPYING
 %{_bindir}/augtool
 %{_bindir}/augparse
+%{_bindir}/augmatch
 %{_bindir}/fadot
 %{_datadir}/vim/vimfiles/syntax/augeas.vim
 %{_datadir}/vim/vimfiles/ftdetect/augeas.vim
@@ -88,7 +89,7 @@ install -m0644 -t %{buildroot}%{_docdir}/%{name}-%{version} AUTHORS NEWS
 
 %files devel
 %defattr(-,root,root,-)
-%{_includedir}/*
+%{_includedir}/*.h
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/augeas.pc
 
