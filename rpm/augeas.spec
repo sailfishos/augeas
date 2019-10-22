@@ -1,6 +1,6 @@
 Name:       augeas
 Summary:    A library for changing configuration files
-Version:    1.6.0
+Version:    1.12.0
 Release:    1
 Group:      System/Libraries
 License:    LGPLv2+
