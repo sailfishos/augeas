@@ -55,6 +55,7 @@ Man pages for %{name}.
 %build
 
 ./autogen.sh --disable-static --prefix=%{_usr} \
+        --libdir=%{_libdir} \
 	--gnulib-srcdir=.gnulib
 make %{?_smp_mflags}
 
