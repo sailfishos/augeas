@@ -2,10 +2,9 @@ Name:       augeas
 Summary:    A library for changing configuration files
 Version:    1.12.0
 Release:    1
-Group:      System/Libraries
 License:    LGPLv2+
 URL:        http://augeas.net/
-Source0:    http://download.augeas.net/%{name}-%{version}.tar.gz
+Source0:    %{name}-%{version}.tar.gz
 Patch0:     001-dont-git.patch
 BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  readline-devel
@@ -24,7 +23,6 @@ format and the transformation into a tree.
 
 %package libs
 Summary:    Libraries for %{name}
-Group:      System/Libraries
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 
@@ -33,7 +31,6 @@ The libraries for %{name}.
 
 %package devel
 Summary:    Development files for %{name}
-Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
 
 %description devel
@@ -42,7 +39,6 @@ developing applications that use %{name}.
 
 %package doc
 Summary:   Documentation for %{name}
-Group:     Documentation
 Requires:  %{name} = %{version}-%{release}
 
 %description doc
@@ -60,8 +56,12 @@ Man pages for %{name}.
 make %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+
 %make_install
+
+# The tests/ subdirectory contains lenses used only for testing, and
+# so it shouldn't be packaged.
+rm -r $RPM_BUILD_ROOT%{_datadir}/augeas/lenses/dist/tests
 
 find %{buildroot} -name '*.la' -exec rm -f {} ';'
 
