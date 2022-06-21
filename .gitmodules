@@ -1,4 +1,4 @@
 [submodule "upstream"]
 	path = upstream
-	url = https://github.com/hercules-team/augeas.git
+	url = https://github.com/sailfishos-mirror/augeas.git
 	fetchRecurseSubmodules = on-demand
