@@ -3,7 +3,7 @@ Summary:    A library for changing configuration files
 Version:    1.12.0
 Release:    1
 License:    LGPLv2+
-URL:        http://augeas.net/
+URL:        https://github.com/sailfishos/augeas
 Source0:    %{name}-%{version}.tar.gz
 Patch0:     001-dont-git.patch
 BuildRequires:  pkgconfig(libxml-2.0)
