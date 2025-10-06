@@ -1,6 +1,6 @@
 Name:       augeas
 Summary:    A library for changing configuration files
-Version:    1.12.0
+Version:    1.14.1
 Release:    1
 License:    LGPLv2+
 URL:        https://github.com/sailfishos/augeas
@@ -45,15 +45,14 @@ Requires:  %{name} = %{version}-%{release}
 Man pages for %{name}.
 
 %prep
-%setup -q -n %{name}-%{version}/upstream
-%patch0 -p1
+%autosetup -p1 -n %{name}-%{version}/upstream
 
 %build
 
 ./autogen.sh --disable-static --prefix=%{_usr} \
         --libdir=%{_libdir} \
-	--gnulib-srcdir=.gnulib
-make %{?_smp_mflags}
+        --gnulib-srcdir=.gnulib
+%make_build
 
 %install
 
@@ -73,28 +72,28 @@ install -m0644 -t %{buildroot}%{_docdir}/%{name}-%{version} AUTHORS NEWS
 %postun libs -p /sbin/ldconfig
 
 %files
-%defattr(-,root,root,-)
 %license COPYING
-%{_bindir}/augtool
-%{_bindir}/augparse
 %{_bindir}/augmatch
+%{_bindir}/augparse
+%{_bindir}/augprint
+%{_bindir}/augtool
 %{_bindir}/fadot
 %{_datadir}/vim/vimfiles/syntax/augeas.vim
 %{_datadir}/vim/vimfiles/ftdetect/augeas.vim
+%{_datadir}/bash-completion/completions/augmatch
+%{_datadir}/bash-completion/completions/augprint
+%{_datadir}/bash-completion/completions/augtool
 
 %files libs
-%defattr(-,root,root,-)
 %license COPYING
 %{_datadir}/augeas
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-,root,root,-)
 %{_includedir}/*.h
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/augeas.pc
 
 %files doc
-%defattr(-,root,root,-)
 %{_mandir}/man1/*
 %{_docdir}/%{name}-%{version}
